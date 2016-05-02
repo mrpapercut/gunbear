@@ -1,1 +1,1 @@
-![My image](github.com/mrpapercut/gunbear/assets/sprites/bear.png)
+![My image](https://raw.githubusercontent.com/mrpapercut/gunbear/master/assets/sprites/bear.png)
