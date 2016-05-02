@@ -1,0 +1,1 @@
+![My image](mrpapercut.github.com/gunbear/assets/sprites/bear.png)
