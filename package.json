@@ -1,0 +1,23 @@
+{
+  "name": "Gunbear",
+  "version": "0.0.1",
+  "description": "Gunbear",
+  "scripts": {
+    "build": "webpack",
+    "watch": "NODE_ENV=dev webpack --progress --colors --watch"
+  },
+  "author": {
+    "name": "Mischa Rodermond"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "webpack": "^1.12.13"
+  },
+  "dependencies": {
+    "object-assign": "^4.0.1",
+	"phaser": "^2.4.7"
+  }
+}
