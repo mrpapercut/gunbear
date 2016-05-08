@@ -7,38 +7,57 @@ import Controls from '../Controls';
 import Player from '../components/Player';
 import Ground from '../components/Ground';
 import Platform from '../components/Platform';
+import Enemy from '../components/Enemy';
 
 import StageConfig from '../configs/Stage1';
 
 class Stage1 extends Default {
-	constructor(Game) {
-		super(Game);
+	constructor(game) {
+		super(game);
 	}
 
 	preload() {
-		this.Game.load.spritesheet('bear', 'assets/sprites/bearsprite.png', 108, 96);
-		this.Game.load.spritesheet('platform', 'assets/sprites/platform.png', 32, 32);
+		this.game.load.spritesheet('bear', 'assets/sprites/bearsprite.png', 108, 96);
+		this.game.load.spritesheet('platform', 'assets/sprites/platform.png', 32, 32);
 
-		this.Game.load.image('ground', 'assets/sprites/ground.png');
-		this.Game.load.image('bullet', 'assets/sprites/bullet.png');
-		this.Game.load.image('background', 'assets/images/forest_bg.png');
+		this.game.load.image('ground', 'assets/sprites/ground.png');
+		this.game.load.image('bullet', 'assets/sprites/bullet.png');
+		this.game.load.image('enemy1', 'assets/sprites/enemy1.png');
+		this.game.load.image('background', 'assets/images/forest_bg.png');
 	}
 
 	create() {
-		this.background = this.Game.add.tileSprite(0, -360, StageConfig.width, 1080, 'background');
+		this.background = this.game.add.tileSprite(0, -360, StageConfig.width, 1080, 'background');
 		this.background.alpha = 0.75;
 
-		this.ground = new Ground(this.Game);
-		this.platforms = StageConfig.platforms.map(p => new Platform(this.Game, assign(p, {key: 'platform'})));
+		this.ground = new Ground(this.game);
+		this.platforms = [this.ground].concat(StageConfig.platforms.map(p => new Platform(this.game, assign(p, {key: 'platform'}))));
 
-		this.player = new Player(this.Game);
+		this.enemies = StageConfig.enemies.map(e => new Enemy(this.game, assign(e, {key: 'enemy1'})));
 
-		this.Game.world.setBounds(0, 0, StageConfig.width, StageConfig.height);
-		this.Game.camera.follow(this.player);
+		this.player = new Player(this.game);
+
+		this.game.world.setBounds(0, 0, StageConfig.width, StageConfig.height);
+		this.game.camera.follow(this.player);
 	}
 
 	update() {
-		this.Game.physics.arcade.collide([this.ground].concat(this.platforms), this.player);
+		this.game.physics.arcade.collide(this.platforms, this.player);
+
+		this.game.physics.arcade.overlap(this.enemies, this.player.bullets, (enemy, bullet) => {
+			enemy.hp -= bullet.damage;
+			if (enemy.hp <= 0) {
+				enemy.destroy();
+			}
+			bullet.destroy();
+		});
+
+		this.game.physics.arcade.collide(this.enemies, this.platforms, (enemy, platform) => {
+			if (enemy.body.velocity.x > 0 && enemy.x > platform.parent.children[2].x + (platform.parent.children[2].width - enemy.body.halfWidth) ||
+				enemy.body.velocity.x < 0 && enemy.x - enemy.body.halfWidth < platform.parent.children[0].x) {
+				enemy.body.velocity.x *= -1;
+			}
+		});
 	}
 };
 

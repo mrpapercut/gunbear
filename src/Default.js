@@ -1,8 +1,8 @@
 'use strict';
 
 class Default {
-	constructor(Game) {
-		this.Game = Game;
+	constructor(game) {
+		this.game = game;
 	}
 
 	preload() {
@@ -26,7 +26,7 @@ class Default {
 	}
 
 	makeSolid() {
-		this.Game.physics.arcade.enable(this.instance);
+		this.game.physics.arcade.enable(this.instance);
 		this.instance.body.enableBody = true;
 	}
 }

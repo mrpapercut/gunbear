@@ -6,8 +6,8 @@ import Default from '../Default';
 import Controls from '../Controls';
 
 class Highscores extends Default {
-	constructor(Game) {
-		super(Game);
+	constructor(game) {
+		super(game);
 	}
 
 	getHighscores() {
@@ -17,23 +17,23 @@ class Highscores extends Default {
 	}
 
 	create() {
-		const {centerX, centerY} = this.Game.world;
+		const {centerX, centerY} = this.game.world;
 
-		this.Game.stage.backgroundColor = '#fff';
+		this.game.stage.backgroundColor = '#fff';
 
-		const title = this.Game.add.text(centerX, 50, 'GunBear Highscores', assign(this.getStyles(), {fontSize: 30}));
+		const title = this.game.add.text(centerX, 50, 'GunBear Highscores', assign(this.getStyles(), {fontSize: 30}));
 		title.anchor.setTo(0.5, 0.5);
 
 		this.getHighscores().map((sco, i) => {
-			let n = this.Game.add.text(centerX - 100, 90 + (i * 25), sco.name, this.getStyles());
+			let n = this.game.add.text(centerX - 100, 90 + (i * 25), sco.name, this.getStyles());
 			n.anchor.setTo(0, 0.5);
-			let s = this.Game.add.text(centerX + 60, 90 + (i * 25), sco.score, this.getStyles());
+			let s = this.game.add.text(centerX + 60, 90 + (i * 25), sco.score, this.getStyles());
 			s.anchor.setTo(0, 0.5);
 		});
 
-		new Controls(this.Game, {
-			enter: () => this.Game.state.start('Splashscreen'),
-			esc: () => this.Game.state.start('Splashscreen')
+		new Controls(this.game, {
+			enter: () => this.game.state.start('Splashscreen'),
+			esc: () => this.game.state.start('Splashscreen')
 		});
 	}
 };

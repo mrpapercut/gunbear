@@ -8,15 +8,15 @@ import MainGame from './states/MainGame';
 
 class GunBear {
 	constructor() {
-		this.Game = new Phaser.Game(GameConfig.width, GameConfig.height, Phaser.AUTO, '');
+		this.game = new Phaser.Game(GameConfig.width, GameConfig.height, Phaser.AUTO, '');
 
 		this.addStates();
 	}
 
 	addStates() {
-		this.Game.state.add('Splashscreen', new Splashscreen(this.Game));
-		this.Game.state.add('Highscores', new Highscores(this.Game));
-		this.Game.state.add('MainGame', new MainGame(this.Game));
+		this.game.state.add('Splashscreen', new Splashscreen(this.game));
+		this.game.state.add('Highscores', new Highscores(this.game));
+		this.game.state.add('MainGame', new MainGame(this.game));
 	}
 
 	getState() {
@@ -24,7 +24,7 @@ class GunBear {
 	}
 
 	start() {
-		this.Game.state.start('Splashscreen');
+		this.game.state.start('Splashscreen');
 	}
 }
 

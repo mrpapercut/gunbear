@@ -1,6 +1,5 @@
 'use strict';
 
-import Default from '../Default';
 import Controls from '../Controls';
 
 import Bullet from './Bullet';
@@ -30,23 +29,22 @@ class Player extends Phaser.Sprite {
 		this.anchor.y = 0.5;
 
 		this.facingRight = true;
+		this.animations.add('walk', [0, 2], 10, true);
 
 		// Movement controls
 		this.cursors = this.game.input.keyboard.createCursorKeys();
-		this.bullets = this.game.add.group();
 
-		this.animations.add('walk', [0, 2], 10, true);
+		this.bullets = [];
 
 		// Other controls
 		new Controls(this.game, {
 			spacebar: () => this.body.touching.down ? this.jump() : null,
-			control: () => new Bullet(game, {
+			control: () => this.bullets.push(new Bullet(game, {
 				x: this.body.x + (this.facingRight ? this.body.width : 0),
 				y: this.body.y,
 				key: 'bullet',
-				group: this.bullets,
 				facingRight: this.facingRight
-			}),
+			})),
 			left: () => this.lookLeft(),
 			right: () => this.lookRight()
 		});

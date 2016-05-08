@@ -14,23 +14,20 @@ class Bullet extends Phaser.Sprite {
 		this.anchor.y = 0.5;
 		this.scale.setTo(facingRight ? 1 : -1, 1);
 
-		this.body.customSeparateX = true;
-		this.body.customSeparateY = true;
-		this.body.allowGravity = false;
-		this.body.immovable = true;
+		this.damage = 50;
+
+		this.body.enableBody = true;
 
 		this.direction = facingRight ? 'right' : 'left';
 
 		this.checkWorldBounds = true;
         this.outOfBoundsKill = true;
 
-		this.playerLocked = false;
-
 		group.add(this);
 	}
 
 	update() {
-		this.body.x += this.direction === 'right' ? 10 : -10;
+		this.body.velocity.x = this.direction === 'right' ? 600 : -600;
 	}
 };
 

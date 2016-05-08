@@ -6,25 +6,25 @@ import Default from '../Default';
 import Controls from '../Controls';
 
 class Splashscreen extends Default {
-	constructor(Game) {
-		super(Game);
+	constructor(game) {
+		super(game);
 	}
 
 	preload() {
-		this.Game.load.image('bearbig', 'assets/images/bear.png');
+		this.game.load.image('bearbig', 'assets/images/bear.png');
 	}
 
 	setLogo() {
-		let logo = this.Game.add.sprite(this.Game.world.centerX, this.Game.world.centerY, 'bearbig');
+		let logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'bearbig');
 		logo.anchor.setTo(0.5, 0.5);
 
 		return logo;
 	}
 
 	setTitle() {
-		const {centerX, centerY} = this.Game.world;
+		const {centerX, centerY} = this.game.world;
 
-		let title = this.Game.add.text(centerX, centerY - 100, 'GunBear', assign(this.getTextStyles(), {fontSize: 60}));
+		let title = this.game.add.text(centerX, centerY - 100, 'GunBear', assign(this.getTextStyles(), {fontSize: 60}));
 		title.anchor.setTo(0.5, 0.5);
 
 		return title;
@@ -33,18 +33,17 @@ class Splashscreen extends Default {
 	setMenuButtons() {
 		let menuButtons = [{
 			text: 'New game',
-			action: () => this.Game.state.start('MainGame')
+			action: () => this.game.state.start('MainGame')
 		}, {
 			text: 'Options',
-			action: () => this.Game.state.start('Options')
+			action: () => this.game.state.start('Options')
 		}, {
 			text: 'Highscores',
-			action: () => this.Game.state.start('Highscores')
+			action: () => this.game.state.start('Highscores')
 		}];
 
-		let y = 2;
 		return menuButtons.map((btn, i) => {
-			let b = this.Game.add.text(this.Game.world.centerX, this.Game.world.centerY + 90 + (i * 30), btn.text, this.getTextStyles());
+			let b = this.game.add.text(this.game.world.centerX, this.game.world.centerY + 90 + (i * 30), btn.text, this.getTextStyles());
 			b.anchor.setTo(0.5, 0.5);
 			b.action = btn.action;
 			return b;
@@ -70,14 +69,14 @@ class Splashscreen extends Default {
 	}
 
 	create() {
-		new Controls(this.Game, {
+		new Controls(this.game, {
 			enter: e => this.onSelect(e),
 			spacebar: e => this.onSelect(e),
 			up: e => this.onMenuUp(e),
 			down: e => this.onMenuDown(e)
 		});
 
-		this.Game.stage.backgroundColor = '#fff';
+		this.game.stage.backgroundColor = '#fff';
 		this.logo = this.setLogo();
 		this.title = this.setTitle();
 		this.menuButtons = this.setMenuButtons();

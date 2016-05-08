@@ -5,16 +5,16 @@ import Default from '../Default';
 import Stage1 from '../stages/Stage1';
 
 class MainGame extends Default {
-	constructor(Game) {
-		super(Game);
+	constructor(game) {
+		super(game);
 	}
 
 	create() {
-		this.Game.physics.startSystem(Phaser.Physics.ARCADE);
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-		this.Game.state.add('Stage1', new Stage1(this.Game));
+		this.game.state.add('Stage1', new Stage1(this.game));
 
-		this.Game.state.start('Stage1');
+		this.game.state.start('Stage1');
 	}
 }
 
