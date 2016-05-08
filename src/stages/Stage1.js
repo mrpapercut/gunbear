@@ -56,6 +56,7 @@ class Stage1 extends Default {
 			if (enemy.body.velocity.x > 0 && enemy.x > platform.parent.children[2].x + (platform.parent.children[2].width - enemy.body.halfWidth) ||
 				enemy.body.velocity.x < 0 && enemy.x - enemy.body.halfWidth < platform.parent.children[0].x) {
 				enemy.body.velocity.x *= -1;
+				enemy.scale.x *= -1;
 			}
 		});
 	}
