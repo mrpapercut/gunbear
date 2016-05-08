@@ -1,7 +1,10 @@
 'use strict';
 
 import GameConfig from './configs/GameConfig';
+
 import Splashscreen from './states/Splashscreen';
+import Highscores from './states/Highscores';
+import MainGame from './states/MainGame';
 
 class GunBear {
 	constructor() {
@@ -12,6 +15,12 @@ class GunBear {
 
 	addStates() {
 		this.Game.state.add('Splashscreen', new Splashscreen(this.Game));
+		this.Game.state.add('Highscores', new Highscores(this.Game));
+		this.Game.state.add('MainGame', new MainGame(this.Game));
+	}
+
+	getState() {
+
 	}
 
 	start() {
@@ -22,6 +31,7 @@ class GunBear {
 window.WebFontConfig = {
 	active() {
 		// Start when fonts are loaded
+		window.GunBear = new GunBear();
 		window.GunBear.start();
 	},
 
@@ -29,5 +39,3 @@ window.WebFontConfig = {
 		families: ['Comfortaa']
 	}
 };
-
-window.addEventListener('load', () => window.GunBear = new GunBear());
