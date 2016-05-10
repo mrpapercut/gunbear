@@ -7,35 +7,60 @@ export default {
 		key: 'ground'
 	},
 	platforms: [{
-		x: 96,
-		y: 160,
-		width: 32 * 3,
-		height: 32
+		x: 3,
+		y: 5,
+		width: 3,
+		height: 1
 	}, {
-		x: 400,
-		y: 240,
-		width: 32 * 3,
-		height: 32
+		x: 12,
+		y: 8,
+		width: 3,
+		height: 1
 	}, {
-		x: 640,
-		y: 150,
-		width: 32 * 8,
-		height: 32
+		x: 20,
+		y: 5,
+		width: 8,
+		height: 1
 	}, {
-		x: 1080,
-		y: 100,
-		width: 32 * 12,
-		height: 32
+		x: 33,
+		y: 3,
+		width: 12,
+		height: 1
 	}, {
-		x: 1480,
-		y: 160,
-		width: 32 * 2,
-		height: 32
+		x: 46,
+		y: 5,
+		width: 2,
+		height: 1
 	}, {
-		x: 1440,
-		y: 240,
-		width: 32 * 3,
-		height: 32
+		x: 45,
+		y: 8,
+		width: 3,
+		height: 1
+	}, {
+		x: 56,
+		y: 4,
+		width: 7,
+		height: 1
+	}, {
+		x: 67,
+		y: 2,
+		width: 2,
+		height: 1
+	}, {
+		x: 71,
+		y: 2,
+		width: 2,
+		height: 1
+	}, {
+		x: 75,
+		y: 2,
+		width: 2,
+		height: 1
+	}, {
+		x: 81,
+		y: 3,
+		width: 2,
+		height: 1
 	}],
 	enemies: [{
 		x: 128,

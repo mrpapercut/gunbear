@@ -16,8 +16,8 @@ class Player extends Phaser.Sprite {
 
 		this.body.collideWorldBounds = true;
 		this.body.checkCollision.up = false;
-		this.body.checkCollision.left = false;
-		this.body.checkCollision.right = false;
+		this.body.checkCollision.left = true;
+		this.body.checkCollision.right = true;
 
 		this.body.bounce.y = GameConfig.bounce.main;
 		this.body.gravity.y = GameConfig.gravity.main;
@@ -34,13 +34,12 @@ class Player extends Phaser.Sprite {
 		// Movement controls
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 
-		this.bullets = [];
-
 		// Other controls
+		this.bullets = [];
 		new Controls(this.game, {
 			spacebar: () => this.body.touching.down ? this.jump() : null,
 			control: () => this.bullets.push(new Bullet(game, {
-				x: this.body.x + (this.facingRight ? this.body.width : 0),
+				x: this.body.x + (this.facingRight ? this.body.width - 16 : 16),
 				y: this.body.y,
 				key: 'bullet',
 				facingRight: this.facingRight
@@ -70,6 +69,10 @@ class Player extends Phaser.Sprite {
 	lookRight() {
 		this.scale.x = GameConfig.scale.x;
 		this.facingRight = true;
+	}
+
+	dies() {
+		// You die
 	}
 
 	update() {

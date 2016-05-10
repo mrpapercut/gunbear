@@ -11,6 +11,8 @@ class PlatformSide extends Phaser.Sprite {
 		this.body.enableBody = true;
 		this.body.allowGravity = false;
 		this.body.immovable = true;
+
+		['left', 'right', 'bottom'].forEach(d => this.body.checkCollision[d] = false);
 	}
 };
 

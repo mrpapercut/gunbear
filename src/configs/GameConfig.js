@@ -12,5 +12,6 @@ export default {
 	scale: {
 		x: 0.5,
 		y: 0.5
-	}
+	},
+	gridSize: 32
 };

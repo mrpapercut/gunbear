@@ -45,11 +45,15 @@ class Stage1 extends Default {
 		this.game.physics.arcade.collide(this.platforms, this.player);
 
 		this.game.physics.arcade.overlap(this.enemies, this.player.bullets, (enemy, bullet) => {
-			enemy.hp -= bullet.damage;
-			if (enemy.hp <= 0) {
+			enemy.health -= bullet.damage;
+			if (enemy.health <= 0) {
 				enemy.destroy();
 			}
 			bullet.destroy();
+		});
+
+		this.game.physics.arcade.overlap(this.enemies, this.player, (enemy, player) => {
+			player.dies();
 		});
 
 		this.game.physics.arcade.collide(this.enemies, this.platforms, (enemy, platform) => {

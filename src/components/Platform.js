@@ -3,24 +3,40 @@
 import PlatformSide from './PlatformSide';
 import PlatformCenter from './PlatformCenter';
 
+import GameConfig from '../configs/GameConfig';
+
 class Platform extends Phaser.Group {
 	constructor(game, {x, y, width, height, key, group}) {
 		super(game);
 
-		const centerWidth = width - 64;
+		const {gridSize} = GameConfig;
+		[x, y, width, height] = [x, y, width, height].map(v => v * gridSize);
+
+		const centerWidth = width - (gridSize * 2);
 
 		game.physics.arcade.enable(this);
 		this.enableBody = true;
 
-		this.add(new PlatformSide(game, {x: x, y: y, key: key, frame: 0}));
-		if (centerWidth >= 32) this.add(new PlatformCenter(game, {
-			x: x + 32,
+		this.add(new PlatformSide(game, {
+			x: x,
+			y,
+			key,
+			frame: 0
+		}));
+		if (centerWidth >= gridSize) this.add(new PlatformCenter(game, {
+			x: x + gridSize,
 			y,
 			width: centerWidth,
 			height,
-			key
+			key,
+			frame: 1
 		}));
-		this.add(new PlatformSide(game, {x: x + width - 32, y: y, key: key, frame: 2}));
+		this.add(new PlatformSide(game, {
+			x: x + width - gridSize,
+			y,
+			key,
+			frame: 2
+		}));
 	}
 };
 
